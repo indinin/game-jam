@@ -10,11 +10,14 @@ public class makeMesh : MonoBehaviour
     Mesh mesh;
     Vector3[] vertices;
     int[] triangles;
+   // PolygonCollider2D poly;
+
 
     // Start is called before the first frame update
     void Start()
     {
         mesh = new Mesh();
+        //poly = GetComponent<PolygonCollider2D>();
         generateMesh();
     }
 
@@ -117,6 +120,9 @@ public class makeMesh : MonoBehaviour
         }
 
         mesh.uv = uvs;
+        //poly.SetPath(0,uvs);
+
+        this.gameObject.AddComponent<PolygonCollider2D>();
 
         mesh.RecalculateBounds();
         mesh.RecalculateNormals();
