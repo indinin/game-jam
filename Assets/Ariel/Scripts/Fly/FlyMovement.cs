@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FlyMovement : MonoBehaviour
 {
-    public Camera camera;
     public float randRadius;
     public float radius;
 

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HornetMovement : MonoBehaviour
 {
-    public Camera camera;
     public float randRadius;
     public float radius;
 
@@ -38,7 +37,6 @@ public class HornetMovement : MonoBehaviour
         midPoint = this.transform.position;
 
         randProg = 0;
-        //randTarg = new Vector3(midPoint.x + Random.value * randRadius, midPoint.y + Random.value * randRadius, midPoint.z);
     }
 
     // Update is called once per frame

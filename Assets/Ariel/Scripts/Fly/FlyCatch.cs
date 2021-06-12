@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class FlyCatch : MonoBehaviour
 {
-    public GameObject spider;
+    private GameObject spider;
 
     private bool caught;
 
     private float randSpeed;
     private float speed;
+    public float webAmount = 1f;
 
     // Start is called before the first frame update
     void Start()
     {
         randSpeed = GetComponent<FlyMovement>().randSpeed;
         speed     = GetComponent<FlyMovement>().speed;
+        spider = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -41,6 +43,7 @@ public class FlyCatch : MonoBehaviour
         if (collision.otherCollider.gameObject.Equals(spider) && caught)
         {
             Debug.Log("Fly: Oof!");
+            collision.otherCollider.gameObject.GetComponent<webMeterScript>().changeWebbing(webAmount);
             Destroy(this.gameObject);
         }
     }
@@ -50,8 +53,8 @@ public class FlyCatch : MonoBehaviour
         if (collision.gameObject.CompareTag("Web"))
         {
             caught = true;
+            Debug.Log("Fly: Zoo Wee Mama!");
         }
-        Debug.Log("Fly: Zoo Wee Mama!");
     }
 
     private void OnTriggerExit2D(Collider2D collision)
