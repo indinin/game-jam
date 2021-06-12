@@ -10,6 +10,21 @@ public class playerMovement : MonoBehaviour
     private bool isMoving;
 
     Vector2 movement;
+    [SerializeField]
+    private SpiderSounds spiderSounds;
+    private AudioSource audioSource;
+
+    void Awake()
+    {
+        if(this.gameObject.GetComponent<SpiderSounds>())
+        {
+            spiderSounds = this.gameObject.GetComponent<SpiderSounds>();
+        }
+        if(this.gameObject.GetComponent<AudioSource>())
+        {
+            audioSource = this.gameObject.GetComponent<AudioSource>();
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +45,21 @@ public class playerMovement : MonoBehaviour
         else
         {
             isMoving = false;
+        }
+
+        if(isMoving)
+        {
+            if(!audioSource.isPlaying)
+            {
+                spiderSounds.playWalkSound();
+            }
+        }
+        else if(!isMoving)
+        {
+            if(audioSource.isPlaying)
+            {
+                spiderSounds.stopWalkSound();
+            }
         }
     }
 

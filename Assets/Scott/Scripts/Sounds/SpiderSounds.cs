@@ -24,6 +24,14 @@ public class SpiderSounds : MonoBehaviour
         audioSource.Play();
     }
 
+    public void stopWalkSound()
+    {
+        if(audioSource.clip == walkSfx)
+        {
+            audioSource.Stop();
+        }
+    }
+
     public void playJumpSound()
     {
         audioSource.Stop();
