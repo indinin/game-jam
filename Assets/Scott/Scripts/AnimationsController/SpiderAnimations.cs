@@ -7,27 +7,36 @@ public class SpiderAnimations : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
-    public void MovingAnim()
+    public void MovingLeftAnim()
     {
-        animator.SetBool("moving", true);
-        Debug.Log("Moving");
+        animator.SetBool("movingLeft", true);
+        animator.SetBool("movingRight", false);
+        Debug.Log("Moving Left - Spider");
+    }
+
+    public void MovingRightAnim()
+    {
+        animator.SetBool("movingLeft", false);
+        animator.SetBool("movingRight", true);
+        Debug.Log("Moving Right - Spider");
     }
 
     public void StopMovingAnim()
     {
-        animator.SetBool("moving", false);
-        Debug.Log("Not Moving");
+        animator.SetBool("movingLeft", false);
+        animator.SetBool("movingRight", false);
+        Debug.Log("Stopped - Spider");
     }
 
     public void JumpAnim()
     {
         animator.SetTrigger("jump");
-        Debug.Log("Jumping");
+        Debug.Log("Jumping - Spider");
     }
 
     public void DeathAnim()
     {
         animator.SetTrigger("dead");
-        Debug.Log("SPLAT!");
+        Debug.Log("SPLAT! - Spider");
     }
 }
