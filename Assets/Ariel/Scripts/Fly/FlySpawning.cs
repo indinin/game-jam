@@ -22,11 +22,15 @@ public class FlySpawning : MonoBehaviour
     [SerializeField]
     private float countdown;
 
+    private float flyLifetime;
+    public float minFlyLifetime;
+
     // Start is called before the first frame update
     void Start()
     {
         currentInterval = maxSpawnInterval;
         countdown = currentInterval;
+        flyLifetime = flyObject.GetComponent<FlyMovement>().lifeTime;
     }
 
     // Update is called once per frame
@@ -46,18 +50,24 @@ public class FlySpawning : MonoBehaviour
                                                          this.transform.position.z),
                                              new Quaternion(0, 0, 0, 0));
 
-                fly.GetComponent<FlyMovement>().camera = FindObjectOfType<Camera>();
+                fly.GetComponent<FlyMovement>().lifeTime = flyLifetime;
                 currentFlies++;
                 Debug.Log("Fly: Hallelujah!");
             }
 
             if (currentFlies == 1 && currentInterval > minSpawnInterval)
             {
+                flyLifetime -= (intervalLoss + 0.1f);
                 currentInterval -= intervalLoss;
 
                 if (currentInterval < intervalLoss)
                 {
                     currentInterval = intervalLoss;
+                }
+
+                if (flyLifetime < minFlyLifetime)
+                {
+                    flyLifetime = minFlyLifetime;
                 }
             }
 

@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 540147445723071918}
   - component: {fileID: 540147445723071919}
   - component: {fileID: 540147445723071917}
-  - component: {fileID: 540147445723071907}
   - component: {fileID: 540147445723071916}
-  - component: {fileID: 4259428682555735778}
+  - component: {fileID: 3579169194111101483}
+  - component: {fileID: 540147445723071907}
+  - component: {fileID: 2858917610304733102}
   m_Layer: 0
   m_Name: Hornet
   m_TagString: Hornet
@@ -105,24 +106,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &540147445723071907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540147445723071912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f06728b3e1959e74ab4703d55f3e9c0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camera: {fileID: 0}
-  randRadius: 50
-  radius: 500
-  randSpeed: 500
-  speed: 50
-  idleTime: 1
 --- !u!50 &540147445723071916
 Rigidbody2D:
   serializedVersion: 4
@@ -144,7 +127,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &4259428682555735778
+--- !u!61 &3579169194111101483
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,5 +151,35 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 8}
+  m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &540147445723071907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540147445723071912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f06728b3e1959e74ab4703d55f3e9c0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randRadius: 50
+  radius: 500
+  randSpeed: 500
+  speed: 50
+  idleTime: 1
+--- !u!114 &2858917610304733102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 540147445723071912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 453f0a5ce4af8a2448cf06d251cc1949, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  webAmount: -2

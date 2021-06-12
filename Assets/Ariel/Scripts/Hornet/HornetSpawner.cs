@@ -46,7 +46,6 @@ public class HornetSpawner : MonoBehaviour
                                                 this.transform.position.z),
                                    new Quaternion(0, 0, 0, 0));
 
-                hornet.GetComponent<HornetMovement>().camera = FindObjectOfType<Camera>();
                 currentHornets++;
                 Debug.Log("Hornet: Hallelujah!");
             }

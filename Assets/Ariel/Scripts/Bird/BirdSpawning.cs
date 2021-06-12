@@ -6,16 +6,16 @@ public class BirdSpawning : MonoBehaviour
 {
     public GameObject warningLabel;
 
-    public float minInterval = 120f;
+    public float minInterval = 10f;
     public float maxInterval = 180f;
-
-    [SerializeField]
-    private float countdown;
 
     public float leftBorder;
     public float rightBorder;
     public float topBorder;
     public float bottomBorder;
+
+    [SerializeField]
+    private float countdown;
 
     // Start is called before the first frame update
     void Start()
