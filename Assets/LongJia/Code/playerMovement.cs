@@ -8,7 +8,7 @@ public class playerMovement : MonoBehaviour
 
     public Rigidbody2D rb;
 
-    Vector2 movement;
+    public Vector2 movement;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +22,8 @@ public class playerMovement : MonoBehaviour
         //Input
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        
     }
 
     void FixedUpdate()
