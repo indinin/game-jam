@@ -7,13 +7,14 @@ public class playerMovement : MonoBehaviour
     public float moveSpeed = 5f;
 
     public Rigidbody2D rb;
+    private bool isMoving;
 
-    public Vector2 movement;
+    Vector2 movement;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        isMoving = false;
     }
 
     // Update is called once per frame
@@ -22,13 +23,22 @@ public class playerMovement : MonoBehaviour
         //Input
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
-
-        
+        if(movement.x != 0 || movement.y != 0)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
     }
 
     void FixedUpdate()
     {
         //Movement
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        if(isMoving)
+        {
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
     }
 }
