@@ -41,4 +41,9 @@ public class playerMovement : MonoBehaviour
             rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         }
     }
+
+    public bool getIsMoving()
+    {
+        return isMoving;
+    }
 }

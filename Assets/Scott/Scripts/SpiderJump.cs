@@ -11,9 +11,12 @@ public class SpiderJump : MonoBehaviour
     [SerializeField]
     private int power;
     [SerializeField]
-    private bool isLessThanX, isLessThanXOld, isLessThanY, isLessThanYOld;
+    private bool isLessThanX, isLessThanXOld, isLessThanY, isLessThanYOld, isJumping;
     [SerializeField]
     private Vector2 worldPoint, spiderPoint;
+    [SerializeField]
+    private GameObject arrow;
+    private playerMovement playerMovement;
 
     void Awake()
     {
@@ -21,10 +24,15 @@ public class SpiderJump : MonoBehaviour
         {
             rigidbody = this.gameObject.GetComponent<Rigidbody2D>();
         }
+        if(this.gameObject.GetComponent<playerMovement>())
+        {
+            playerMovement = this.gameObject.GetComponent<playerMovement>();
+        }
         isLessThanX = false;
         isLessThanXOld = isLessThanX;
         isLessThanY = false;
         isLessThanYOld = isLessThanY;
+        isJumping = false;
     }
 
     void Update()
@@ -49,7 +57,14 @@ public class SpiderJump : MonoBehaviour
 
         if(Input.GetKeyDown("space"))
         {
+            rigidbody.velocity = Vector2.zero;
+            rigidbody.gravityScale = 0;
+            Instantiate(arrow, spiderPoint, this.transform.rotation);
+        }
+        if(Input.GetKeyUp("space"))
+        {
             Debug.Log("Space Key Pressed");
+            isJumping = true;
             worldPoint = cam.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
             rigidbody.gravityScale = 5;
@@ -76,10 +91,20 @@ public class SpiderJump : MonoBehaviour
                 isLessThanYOld = isLessThanY;
             }
         }
-        if((isLessThanX != isLessThanXOld || isLessThanY != isLessThanYOld) || (rigidbody.velocity.x == 0 || rigidbody.velocity.y == 0))
+        if((isLessThanX != isLessThanXOld || isLessThanY != isLessThanYOld) || (rigidbody.velocity.x == 0 || rigidbody.velocity.y == 0) || playerMovement.getIsMoving())
         {
             rigidbody.velocity = Vector2.zero;
             rigidbody.gravityScale = 0;
         }
+    }
+
+    public bool getIsJumping()
+    {
+        return isJumping;
+    }
+
+    public void setIsJumping(bool isJumping)
+    {
+        this.isJumping = isJumping;
     }
 }
