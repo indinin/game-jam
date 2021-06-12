@@ -1507,6 +1507,7 @@ MonoBehaviour:
   ControlsMenu: {fileID: 310950964}
   CreditsMenu: {fileID: 498197879}
   LevelNumber: 1
+  TitleSceneNumber: 0
 --- !u!1 &860128698
 GameObject:
   m_ObjectHideFlags: 0
