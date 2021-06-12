@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class ButtonGrowShrink : MonoBehaviour
 {
@@ -16,18 +15,9 @@ public class ButtonGrowShrink : MonoBehaviour
         }
     }
 
-    void Update()
+    void OnEnable()
     {
-        if(!this.gameObject.activeSelf && !isShrunkAndInactive)
-        {
-            Shrink();
-            isShrunkAndInactive = true;
-        }
-
-        if(this.gameObject.activeSelf && isShrunkAndInactive)
-        {
-            isShrunkAndInactive = false;
-        }
+        Shrink();
     }
 
     public void Grow()
