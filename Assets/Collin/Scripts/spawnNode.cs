@@ -6,7 +6,7 @@ public class spawnNode : MonoBehaviour
 {
     public makeMesh meshScript;
     public Camera cam;
-    public GameObject obj, meshMaker, tracker, center;
+    public GameObject obj, meshMaker, tracker, center, meter;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +28,7 @@ public class spawnNode : MonoBehaviour
                 {
                     GameObject mesh = Instantiate(meshMaker, center.transform.position, center.transform.rotation);
                     mesh.GetComponent<makeMesh>().center = center;
+                    mesh.GetComponent<makeMesh>().meter = meter;
                     //meshScript.generateMesh();
                     GameObject[] nodes = GameObject.FindGameObjectsWithTag("webNode");
                     for(int i = 0; i < nodes.Length; i++)

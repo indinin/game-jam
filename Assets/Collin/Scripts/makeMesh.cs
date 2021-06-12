@@ -5,7 +5,7 @@ using UnityEngine;
 public class makeMesh : MonoBehaviour
 {
     public GameObject[] nodes;
-    public GameObject center;
+    public GameObject center, meter;
     public float dim3;
     Mesh mesh;
     Vector3[] vertices;
@@ -110,7 +110,10 @@ public class makeMesh : MonoBehaviour
         mesh.triangles = triangles;
 
         print("Area: " + CalculateSurfaceArea());
+
+        meter.GetComponent<webMeterScript>().changeWebbing(-1 * CalculateSurfaceArea());
     }
+
 
     float CalculateSurfaceArea()
     {
