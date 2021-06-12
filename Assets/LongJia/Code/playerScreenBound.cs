@@ -28,4 +28,41 @@ public class playerScreenBound : MonoBehaviour
         objectPosition.y = Mathf.Clamp(objectPosition.y, -screenBounds.y + objHeight, screenBounds.y - objHeight);
         transform.position = objectPosition;
     }
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Web")
+        {
+            ignorCollision col = GetComponent<ignorCollision>();
+            playerMovement pos = GetComponent<playerMovement>();
+            Vector3 objectPosition = transform.position;
+
+            if(col.inWeb == true)
+            {
+                if (pos.movement.x == -1)
+                {
+                    objectPosition.x = Mathf.Clamp(objectPosition.x, objectPosition.x + objWidth, objectPosition.x + objWidth);
+                    objectPosition.y = Mathf.Clamp(objectPosition.y, objectPosition.y, objectPosition.y);
+                }
+                if (pos.movement.x == 1)
+                {
+                    objectPosition.x = Mathf.Clamp(objectPosition.x, objectPosition.x - objWidth, objectPosition.x - objWidth);
+                    objectPosition.y = Mathf.Clamp(objectPosition.y, objectPosition.y, objectPosition.y);
+                }
+
+                if (pos.movement.y == -1)
+                {
+                    objectPosition.x = Mathf.Clamp(objectPosition.x, objectPosition.x, objectPosition.x);
+                    objectPosition.y = Mathf.Clamp(objectPosition.y, objectPosition.y + objHeight, objectPosition.y + objHeight);
+                }
+                if (pos.movement.y == 1)
+                {
+                    objectPosition.x = Mathf.Clamp(objectPosition.x, objectPosition.x, objectPosition.x);
+                    objectPosition.y = Mathf.Clamp(objectPosition.y, objectPosition.y - objHeight, objectPosition.y - objHeight);
+                }
+                transform.position = objectPosition;
+            }
+        }
+    }
+    
+
 }

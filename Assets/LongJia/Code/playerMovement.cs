@@ -9,7 +9,7 @@ public class playerMovement : MonoBehaviour
     public Rigidbody2D rb;
     private bool isMoving;
 
-    Vector2 movement;
+    public Vector2 movement;
     [SerializeField]
     private SpiderSounds spiderSounds;
     private AudioSource audioSource;
