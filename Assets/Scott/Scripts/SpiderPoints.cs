@@ -5,10 +5,12 @@ using UnityEngine;
 public class SpiderPoints : MonoBehaviour
 {
     private int points;
+    private int personalBest;
 
     void Awake()
     {
         points = 0;
+        loadPoints();
     }
 
     public void AddPoints(int points)
@@ -19,5 +21,34 @@ public class SpiderPoints : MonoBehaviour
     public int getPoints()
     {
         return points;
+    }
+
+    public void setPersonalBest()
+    {
+        if(points > personalBest)
+        {
+            personalBest = points;
+        }
+    }
+
+    public void savePoints()
+    {
+        PlayerPrefs.SetInt("PersonalBest", personalBest);
+        PlayerPrefs.Save();
+        Debug.Log("Score Is Saved");
+    }
+
+    public void loadPoints()
+    {
+        if(PlayerPrefs.HasKey("PersonalBest"))
+        {
+            personalBest = PlayerPrefs.GetInt("PersonalBest");
+            Debug.Log("Data is Loaded");
+        }
+        else
+        {
+            personalBest = 0;
+            Debug.Log("No Save Data");
+        }
     }
 }
