@@ -38,32 +38,32 @@ public class SpiderJump : MonoBehaviour
         {
             audioSource = this.gameObject.GetComponent<AudioSource>();
         }
-        isLessThanX = false;
-        isLessThanXOld = isLessThanX;
-        isLessThanY = false;
-        isLessThanYOld = isLessThanY;
+        // isLessThanX = false;
+        // isLessThanXOld = isLessThanX;
+        // isLessThanY = false;
+        // isLessThanYOld = isLessThanY;
         isJumping = false;
     }
 
     void Update()
     {
         spiderPoint = new Vector2(this.transform.position.x, this.transform.position.y);
-        if(spiderPoint.x < worldPoint.x)
-        {
-            isLessThanX = true;
-        }
-        else
-        {
-            isLessThanX = false;
-        }
-        if(spiderPoint.y == worldPoint.y)
-        {
-            isLessThanY = true;
-        }
-        else
-        {
-            isLessThanY = false;
-        }
+        // if(spiderPoint.x < worldPoint.x)
+        // {
+        //     isLessThanX = true;
+        // }
+        // else
+        // {
+        //     isLessThanX = false;
+        // }
+        // if(spiderPoint.y == worldPoint.y)
+        // {
+        //     isLessThanY = true;
+        // }
+        // else
+        // {
+        //     isLessThanY = false;
+        // }
 
         if(Input.GetKeyDown("space"))
         {
@@ -81,32 +81,32 @@ public class SpiderJump : MonoBehaviour
             rigidbody.gravityScale = 5;
             rigidbody.AddForce((worldPoint - spiderPoint) * power);
             Debug.Log("Jump Power Activated");
-            if(spiderPoint.x < worldPoint.x)
-            {
-                isLessThanX = true;
-                isLessThanXOld = isLessThanX;
-            }
-            else
-            {
-                isLessThanX = false;
-                isLessThanXOld = isLessThanX;
-            }
-            if(spiderPoint.y == worldPoint.y)
-            {
-                isLessThanY = true;
-                isLessThanYOld = isLessThanY;
-            }
-            else
-            {
-                isLessThanY = false;
-                isLessThanYOld = isLessThanY;
-            }
+            // if(spiderPoint.x < worldPoint.x)
+            // {
+            //     isLessThanX = true;
+            //     isLessThanXOld = isLessThanX;
+            // }
+            // else
+            // {
+            //     isLessThanX = false;
+            //     isLessThanXOld = isLessThanX;
+            // }
+            // if(spiderPoint.y == worldPoint.y)
+            // {
+            //     isLessThanY = true;
+            //     isLessThanYOld = isLessThanY;
+            // }
+            // else
+            // {
+            //     isLessThanY = false;
+            //     isLessThanYOld = isLessThanY;
+            // }
         }
-        if((isLessThanX != isLessThanXOld || isLessThanY != isLessThanYOld) || (rigidbody.velocity.x == 0 || rigidbody.velocity.y == 0) || playerMovement.getIsMoving())
-        {
-            rigidbody.velocity = Vector2.zero;
-            rigidbody.gravityScale = 0;
-        }
+        // if((isLessThanX != isLessThanXOld || isLessThanY != isLessThanYOld) || (rigidbody.velocity.x == 0 || rigidbody.velocity.y == 0) || playerMovement.getIsMoving())
+        // {
+        //     rigidbody.velocity = Vector2.zero;
+        //     rigidbody.gravityScale = 0;
+        // }
     }
 
     public bool getIsJumping()
@@ -117,5 +117,19 @@ public class SpiderJump : MonoBehaviour
     public void setIsJumping(bool isJumping)
     {
         this.isJumping = isJumping;
+    }
+
+    public void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Wall")
+        {
+            rigidbody.velocity = Vector2.zero;
+            rigidbody.gravityScale = 0;
+        }
+        if (col.gameObject.tag == "Web")
+        {
+            rigidbody.velocity = Vector2.zero;
+            rigidbody.gravityScale = 0;
+        }
     }
 }
