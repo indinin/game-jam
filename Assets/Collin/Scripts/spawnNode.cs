@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class spawnNode : MonoBehaviour
 {
-    
+    public makeMesh meshScript;
     public Camera cam;
-    public GameObject obj, tracker;
+    public GameObject obj, meshMaker, tracker, center;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,8 +24,22 @@ public class spawnNode : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                tracker.transform.position = hit.point;
-                Instantiate(obj, tracker.transform.position, tracker.transform.rotation);
+                if (hit.collider.gameObject.tag == "webNode")
+                {
+                    GameObject mesh = Instantiate(meshMaker, center.transform.position, center.transform.rotation);
+                    mesh.GetComponent<makeMesh>().center = center;
+                    //meshScript.generateMesh();
+                    GameObject[] nodes = GameObject.FindGameObjectsWithTag("webNode");
+                    for(int i = 0; i < nodes.Length; i++)
+                    {
+                        Destroy(nodes[i]);
+                    }
+                }
+                else
+                {
+                    tracker.transform.position = hit.point;
+                    Instantiate(obj, tracker.transform.position, tracker.transform.rotation);
+                }
             }
         }
     }
