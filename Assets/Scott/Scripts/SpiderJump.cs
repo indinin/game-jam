@@ -17,6 +17,8 @@ public class SpiderJump : MonoBehaviour
     [SerializeField]
     private GameObject arrow;
     private playerMovement playerMovement;
+    private SpiderSounds spiderSounds;
+    private AudioSource audioSource;
 
     void Awake()
     {
@@ -27,6 +29,14 @@ public class SpiderJump : MonoBehaviour
         if(this.gameObject.GetComponent<playerMovement>())
         {
             playerMovement = this.gameObject.GetComponent<playerMovement>();
+        }
+        if(this.gameObject.GetComponent<SpiderSounds>())
+        {
+            spiderSounds = this.gameObject.GetComponent<SpiderSounds>();
+        }
+        if(this.gameObject.GetComponent<AudioSource>())
+        {
+            audioSource = this.gameObject.GetComponent<AudioSource>();
         }
         isLessThanX = false;
         isLessThanXOld = isLessThanX;
@@ -64,6 +74,7 @@ public class SpiderJump : MonoBehaviour
         if(Input.GetKeyUp("space"))
         {
             Debug.Log("Space Key Pressed");
+            spiderSounds.playJumpSound();
             isJumping = true;
             worldPoint = cam.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(worldPoint, Vector2.zero);
