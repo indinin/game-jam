@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - webNode
+  - Hornet
+  - Fly
+  - Web
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -14,8 +18,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - WebLayer
+  - centerLayer
   - 
   - 
   - 

@@ -122,7 +122,8 @@ MonoBehaviour:
   radius: 100
   randSpeed: 500
   speed: 25
-  idleTime: 0
+  idleTime: 2
+  lifeTime: 60
 --- !u!114 &1700165570454958896
 MonoBehaviour:
   m_ObjectHideFlags: 0

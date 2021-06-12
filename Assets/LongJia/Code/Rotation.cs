@@ -13,30 +13,19 @@ public class Rotation : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
     void FixedUpdate()
     {
-        if (transform.position.x >= 12f)
-        {
-            transform.eulerAngles = new Vector3(0, 0, 90);
-        }
-        if (transform.position.x <= -12f)
-        {
-            transform.eulerAngles = new Vector3(0, 0, -90);
-        }
+        // convert mouse position into world coordinates
+        Vector2 mouseScreenPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (transform.position.y >= 5.5f)
-        {
-            transform.eulerAngles = new Vector3(0, 0, 180);
-        }
-        if (transform.position.y <= -5.5f)
-        {
-            transform.eulerAngles = new Vector3(0, 0, 0);
-        }
+        // get direction you want to point at
+        Vector2 direction = (mouseScreenPosition - (Vector2)transform.position).normalized;
 
-      
+        // set vector of transform directly
+        transform.up = direction;
     }
+
 }
+   
+    
+

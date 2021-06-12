@@ -13,6 +13,18 @@ public class MenuController : MonoBehaviour
     private GameObject CreditsMenu;
     [SerializeField]
     private int LevelNumber;
+    [SerializeField]
+    private AudioClip hoverSfx, clickSfx;
+    [SerializeField]
+    private AudioSource audioSource;
+
+    void Awake()
+    {
+        if(this.gameObject.GetComponent<AudioSource>())
+        {
+            audioSource = this.gameObject.GetComponent<AudioSource>();
+        }
+    }
 
     void Start()
     {
@@ -80,5 +92,19 @@ public class MenuController : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("Quit The Game");
+    }
+
+    public void playHoverSound()
+    {
+        audioSource.Stop();
+        audioSource.clip = hoverSfx;
+        audioSource.Play();
+    }
+
+    public void playClickSound()
+    {
+        audioSource.Stop();
+        audioSource.clip = clickSfx;
+        audioSource.Play();
     }
 }

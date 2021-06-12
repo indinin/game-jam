@@ -12,10 +12,11 @@ public class FlyMovement : MonoBehaviour
     public float speed;
 
     public float idleTime;
+    public float lifeTime;
 
     private float randAddProg;
     private float addProg;
-    private float countDown;
+    private float targetDelay;
 
     private Vector3 midPoint;
     private Vector3 randStartPos;
@@ -26,6 +27,7 @@ public class FlyMovement : MonoBehaviour
     private float randProg = 0;
     private float progress = 0;
     private bool isIdle;
+    private bool willLeave;
 
     // Start is called before the first frame update
     void Start()
@@ -92,18 +94,62 @@ public class FlyMovement : MonoBehaviour
                 progress = 0;
 
                 isIdle = true;
-                countDown = idleTime;
+                targetDelay = idleTime;
             }
+
         }
 
         if (isIdle)
         {
-            countDown -= Time.deltaTime;
+            targetDelay -= Time.deltaTime;
 
-            if (countDown < 0)
+            if (targetDelay < 0)
             {
                 isIdle = false;
             }
+
+        }
+
+        if (lifeTime > 0)
+        {
+            lifeTime -= Time.deltaTime;
+        }
+
+        else if (lifeTime <= 0 && !willLeave)
+        {
+            switch (Random.Range(0,8))
+            {
+                case 0:
+                    target = new Vector3(this.transform.position.x, 1000, this.transform.position.z);
+                    break;
+                case 1:
+                    target = new Vector3(this.transform.position.x, -1000, this.transform.position.z);
+                    break;
+                case 2:
+                    target = new Vector3(1000, this.transform.position.y, this.transform.position.z);
+                    break;
+                case 3:
+                    target = new Vector3(-1000, this.transform.position.y, this.transform.position.z);
+                    break;
+                case 4:
+                    target = new Vector3(1000, 1000, this.transform.position.z);
+                    break;
+                case 5:
+                    target = new Vector3(1000, -1000, this.transform.position.z);
+                    break;
+                case 6:
+                    target = new Vector3(-1000, -1000, this.transform.position.z);
+                    break;
+                case 7:
+                    target = new Vector3(-1000, 1000, this.transform.position.z);
+                    break;
+                default:
+                    target = new Vector3(this.transform.position.x, 1000, this.transform.position.z);
+                    break;
+            }
+            progress = 0.01f;
+            willLeave = true;
+            isIdle = false;
         }
     }
 

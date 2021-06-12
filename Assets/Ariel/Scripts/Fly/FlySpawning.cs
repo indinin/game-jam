@@ -40,12 +40,13 @@ public class FlySpawning : MonoBehaviour
 
             if (Random.Range(0,2) == 1 && currentFlies < maxFlies)
             {
-                Instantiate(flyObject,
-                            new Vector3(Random.Range(leftBorder, rightBorder),
-                                        Random.Range(bottomBorder, topBorder),
-                                        this.transform.position.z),
-                            new Quaternion(0, 0, 0, 0));
+                GameObject fly = Instantiate(flyObject,
+                                             new Vector3(Random.Range(leftBorder, rightBorder),
+                                                         Random.Range(bottomBorder, topBorder),
+                                                         this.transform.position.z),
+                                             new Quaternion(0, 0, 0, 0));
 
+                fly.GetComponent<FlyMovement>().camera = FindObjectOfType<Camera>();
                 currentFlies++;
                 Debug.Log("Fly: Hallelujah!");
             }

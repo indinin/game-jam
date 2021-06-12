@@ -115,6 +115,6 @@ public class HornetMovement : MonoBehaviour
     private void OnBecameInvisible()
     {
         Debug.Log("Hornet: Oof!");
-        Destroy(this);
+        Destroy(this.gameObject);
     }
 }

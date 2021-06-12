@@ -15,7 +15,7 @@ public class FlyCatch : MonoBehaviour
     void Start()
     {
         randSpeed = GetComponent<FlyMovement>().randSpeed;
-        speed = GetComponent<FlyMovement>().speed;
+        speed     = GetComponent<FlyMovement>().speed;
     }
 
     // Update is called once per frame
@@ -24,14 +24,14 @@ public class FlyCatch : MonoBehaviour
         if (caught && GetComponent<FlyMovement>().isActiveAndEnabled)
         {
             GetComponent<FlyMovement>().randSpeed -= randSpeed * Time.deltaTime/2;
-            GetComponent<FlyMovement>().speed -= speed * Time.deltaTime/2;
+            GetComponent<FlyMovement>().speed     -= speed     * Time.deltaTime/2;
 
             if (GetComponent<FlyMovement>().randSpeed <= 0 &&
-                GetComponent<FlyMovement>().speed <= 0)
+                GetComponent<FlyMovement>().speed     <= 0)
             {
                 GetComponent<FlyMovement>().randSpeed = 0;
-                GetComponent<FlyMovement>().speed = 0;
-                GetComponent<FlyMovement>().enabled = false;
+                GetComponent<FlyMovement>().speed     = 0;
+                GetComponent<FlyMovement>().enabled   = false;
             }
         }
     }
@@ -41,7 +41,7 @@ public class FlyCatch : MonoBehaviour
         if (collision.otherCollider.gameObject.Equals(spider) && caught)
         {
             Debug.Log("Fly: Oof!");
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 
@@ -52,5 +52,20 @@ public class FlyCatch : MonoBehaviour
             caught = true;
         }
         Debug.Log("Fly: Zoo Wee Mama!");
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (caught && collision.gameObject.CompareTag("Web"))
+        {
+            caught = false;
+            this.GetComponent<FlyMovement>().lifeTime = 0;
+        }
+    }
+
+    private void OnBecameInvisible()
+    {
+        Debug.Log("Hornet: Oof!");
+        Destroy(this.gameObject);
     }
 }
