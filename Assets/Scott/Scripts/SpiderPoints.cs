@@ -23,6 +23,11 @@ public class SpiderPoints : MonoBehaviour
         return points;
     }
 
+    public int getPersonalBest()
+    {
+        return personalBest;
+    }
+
     public void setPersonalBest()
     {
         if(points > personalBest)
