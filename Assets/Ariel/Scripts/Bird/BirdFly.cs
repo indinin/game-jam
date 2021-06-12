@@ -44,7 +44,7 @@ public class BirdFly : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if (Mathf.Abs(currentSize.x - this.transform.localScale.x) < 0.1)
+        if (Mathf.Abs(currentSize.x - this.transform.localScale.x) < 0.5f)
         {
             this.GetComponent<Collider2D>().enabled = true;
         }
