@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 399315685}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -392,6 +392,14 @@ MonoBehaviour:
   cam: {fileID: 1444030373}
   rigidbody: {fileID: 399315678}
   power: 2500
+  isLessThanX: 0
+  isLessThanXOld: 0
+  isLessThanY: 0
+  isLessThanYOld: 0
+  isJumping: 0
+  worldPoint: {x: 0, y: 0}
+  spiderPoint: {x: 0, y: 0}
+  arrow: {fileID: 9165800665344012583, guid: 7fc7b5e76b0c0dd44b7cc7189cea6309, type: 3}
 --- !u!1 &435486550
 GameObject:
   m_ObjectHideFlags: 0
