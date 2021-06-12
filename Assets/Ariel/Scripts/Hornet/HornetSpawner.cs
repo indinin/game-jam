@@ -40,12 +40,13 @@ public class HornetSpawner : MonoBehaviour
 
             if (currentHornets < maxHornets)
             {
-                Instantiate(hornetObject,
-                            new Vector3(Random.Range(leftBorder, rightBorder),
-                                        Random.Range(bottomBorder, topBorder),
-                                        this.transform.position.z),
-                            new Quaternion(0, 0, 0, 0));
+                GameObject hornet = Instantiate(hornetObject,
+                                    new Vector3(Random.Range(leftBorder, rightBorder),
+                                                Random.Range(bottomBorder, topBorder),
+                                                this.transform.position.z),
+                                   new Quaternion(0, 0, 0, 0));
 
+                hornet.GetComponent<HornetMovement>().camera = FindObjectOfType<Camera>();
                 currentHornets++;
                 Debug.Log("Hornet: Hallelujah!");
             }
