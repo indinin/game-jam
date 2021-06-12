@@ -109,6 +109,18 @@ public class makeMesh : MonoBehaviour
         mesh.vertices = vertices;
         mesh.triangles = triangles;
 
+        Vector2[] uvs = new Vector2[vertices.Length];
+
+        for(int i = 0; i < uvs.Length; i++)
+        {
+            uvs[i] = new Vector2(vertices[i].x, vertices[i].y);
+        }
+
+        mesh.uv = uvs;
+
+        mesh.RecalculateBounds();
+        mesh.RecalculateNormals();
+
         print("Area: " + CalculateSurfaceArea());
 
         meter.GetComponent<webMeterScript>().changeWebbing(-1 * CalculateSurfaceArea());
