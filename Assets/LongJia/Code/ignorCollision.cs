@@ -22,7 +22,8 @@ public class ignorCollision : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-       
+        
+
         if (inWeb == true)
         {
             Physics2D.IgnoreCollision(g1.GetComponent<Collider2D>(), g2.GetComponent<Collider2D>());
@@ -36,21 +37,50 @@ public class ignorCollision : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.tag == "Web")
+        if (col.gameObject.tag == "Wall")
+        {
+            print("enetered");
+            inWeb = false;
+
+        }
+        if (col.gameObject.tag == "Web")
         {
             print("enetered");
             inWeb = true;
         }
+
         
     }
+
+
+
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Web")
         {
-            print("exit");
-            inWeb = false;
+            print("Exit");
+            
+                if (transform.position.y <= -5.44 && transform.position.y >= -5.96)
+                {
+                    inWeb = false;
+                }
+                if (transform.position.y >= 5.44 && transform.position.y <= 5.96)
+                {
+                    inWeb = false;
+                }
+
+                if (transform.position.x <= -12.296 && transform.position.x >= -12.888)
+                {
+                    inWeb = false;
+                }
+                if (transform.position.x >= 12.296 && transform.position.x <= 12.888)
+                {
+                    inWeb = false;
+                }
+            
 
         }
     }
-   
+
+
 }
