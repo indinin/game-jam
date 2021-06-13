@@ -64,7 +64,7 @@ public class makeMesh : MonoBehaviour
         foreach (GameObject node in nodes)
         {
             vertices[i] = node.transform.position;
-            vertices[i].z = dim3;
+            //vertices[i].z = dim3;
             i++;
         }
 
@@ -72,6 +72,23 @@ public class makeMesh : MonoBehaviour
     }
     void sortVertices()
     {
+        /*
+        float centerX = 0;
+        float centerY = 0;
+        for(int i = 0; i < vertices.Length; i++)
+        {
+            centerX += vertices[i].x;
+            centerY += vertices[i].y;
+        }
+
+        centerX = centerX / vertices.Length;
+        centerY = centerY / vertices.Length;
+
+        center.transform.position = new Vector3(centerX, centerY, center.transform.position.z);
+
+
+    */
+
         //Vector3[] sortedVerts = new Vector3[vertices.Length];
         for (int i = 0; i < vertices.Length; i++)
         {
@@ -128,6 +145,8 @@ public class makeMesh : MonoBehaviour
         mesh.RecalculateNormals();
 
         print("Area: " + CalculateSurfaceArea());
+
+        center = null;
 
         meter.GetComponent<webMeterScript>().changeWebbing(-1 * CalculateSurfaceArea());
     }
