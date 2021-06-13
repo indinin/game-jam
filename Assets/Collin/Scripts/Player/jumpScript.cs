@@ -6,16 +6,20 @@ public class jumpScript : MonoBehaviour
 {
     public bool jumping = false;
     public float jumpSpeed;
+    private GameoverToggle gameoverToggle;
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(this.gameObject.GetComponent<GameoverToggle>())
+        {
+            gameoverToggle = this.gameObject.GetComponent<GameoverToggle>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButtonUp(0) && !gameoverToggle.getIsGameOver())
         {
             if (!jumping && (!GetComponent<walkScript>().grav))
             {
