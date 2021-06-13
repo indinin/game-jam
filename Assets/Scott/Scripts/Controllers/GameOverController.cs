@@ -18,6 +18,7 @@ public class GameOverController : MonoBehaviour
     private int timer, points, best;
     private GameObject spider;
     private SpiderPoints spiderPoints;
+    private GameoverToggle gameoverToggle;
     [SerializeField]
     private Timer timerObj;
 
@@ -31,6 +32,10 @@ public class GameOverController : MonoBehaviour
         if(spider.GetComponent<SpiderPoints>())
         {
             spiderPoints = spider.GetComponent<SpiderPoints>();
+        }
+        if(spider.GetComponent<GameoverToggle>())
+        {
+            gameoverToggle = spider.GetComponent<GameoverToggle>();
         }
         timerObj.setIsGameOver(true);
 
@@ -61,6 +66,7 @@ public class GameOverController : MonoBehaviour
 
     public void RestartGame()
     {
+        gameoverToggle.setIsGameOver(false);
         SceneManager.LoadScene(TitleSceneNumber);
         Debug.Log("Game Over Go To Menu");
     }
