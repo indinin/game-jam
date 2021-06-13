@@ -22,13 +22,10 @@ public class ignorCollision : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        
-
         if (inWeb == true)
         {
             Physics2D.IgnoreCollision(g1.GetComponent<Collider2D>(), g2.GetComponent<Collider2D>());
         }
-
         if (inWeb == false)
         {
             Physics2D.IgnoreCollision(g1.GetComponent<Collider2D>(), g2.GetComponent<Collider2D>(),false);
@@ -52,9 +49,34 @@ public class ignorCollision : MonoBehaviour
         
     }
 
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (transform.position.y <= -5.44 && transform.position.y >= -5.96)
+        {
+            inWeb = false;
+        }
+        if (transform.position.y >= 5.44 && transform.position.y <= 5.96)
+        {
+            inWeb = false;
+        }
+
+        if (transform.position.x <= -12.296 && transform.position.x >= -12.888)
+        {
+            inWeb = false;
+        }
+        if (transform.position.x >= 12.296 && transform.position.x <= 12.888)
+        {
+            inWeb = false;
+        }
+        else
+        {
+            inWeb = true;
+        }
+    }
 
 
-    void OnTriggerExit2D(Collider2D collision)
+
+        void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Web")
         {
