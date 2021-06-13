@@ -5,7 +5,7 @@ using UnityEngine;
 public class HornetSounds : MonoBehaviour
 {
     [SerializeField]
-    private AudioClip buzzSfx;
+    private AudioClip buzzSfx, stingSfx;
     [SerializeField]
     private AudioSource audioSource;
 
@@ -21,6 +21,13 @@ public class HornetSounds : MonoBehaviour
     {
         audioSource.Stop();
         audioSource.clip = buzzSfx;
+        audioSource.Play();
+    }
+
+    public void playStingSound()
+    {
+        audioSource.Stop();
+        audioSource.clip = stingSfx;
         audioSource.Play();
     }
 }

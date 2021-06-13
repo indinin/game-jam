@@ -27,6 +27,12 @@ public class HornetHurt : MonoBehaviour
         {
             Debug.Log("Hornet: Get Shrekt!");
             animator.SetBool("HittingPlayer", true);
+
+            if (!GetComponent<AudioSource>().isPlaying)
+            {
+                GetComponent<HornetSounds>().playStingSound();
+            }
+
             /* Do Something to Spider */
             collision.gameObject.GetComponent<webMeterScript>().changeWebbing(webAmount);
         }
