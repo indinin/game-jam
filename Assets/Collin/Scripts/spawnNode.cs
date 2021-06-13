@@ -26,9 +26,13 @@ public class spawnNode : MonoBehaviour
             {
                 if (hit.collider.gameObject.tag == "webNode")
                 {
-                    GameObject mesh = Instantiate(meshMaker, center.transform.position, center.transform.rotation);
-                    mesh.GetComponent<makeMesh>().center = center;
-                    mesh.GetComponent<makeMesh>().meter = meter;
+                    webMeterScript webScript = meter.GetComponent<webMeterScript>();
+                    if (webScript.web + webScript.lenience > 0)
+                    {
+                        GameObject mesh = Instantiate(meshMaker, center.transform.position, center.transform.rotation);
+                        mesh.GetComponent<makeMesh>().center = center;
+                        mesh.GetComponent<makeMesh>().meter = meter;
+                    }
                     //meshScript.generateMesh();
                     GameObject[] nodes = GameObject.FindGameObjectsWithTag("webNode");
                     for(int i = 0; i < nodes.Length; i++)

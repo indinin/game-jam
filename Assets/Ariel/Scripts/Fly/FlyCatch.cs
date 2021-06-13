@@ -40,10 +40,10 @@ public class FlyCatch : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.otherCollider.gameObject.Equals(spider) && caught)
+        if (collision.gameObject.Equals(spider) && caught)
         {
             Debug.Log("Fly: Oof!");
-            collision.otherCollider.gameObject.GetComponent<webMeterScript>().changeWebbing(webAmount);
+            collision.gameObject.GetComponent<webMeterScript>().changeWebbing(webAmount);
             Destroy(this.gameObject);
         }
     }
@@ -68,7 +68,7 @@ public class FlyCatch : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        Debug.Log("Hornet: Oof!");
+        Debug.Log("Fly: Oof!");
         Destroy(this.gameObject);
     }
 }

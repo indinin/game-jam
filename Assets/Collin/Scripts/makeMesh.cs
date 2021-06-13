@@ -10,11 +10,14 @@ public class makeMesh : MonoBehaviour
     Mesh mesh;
     Vector3[] vertices;
     int[] triangles;
+    PolygonCollider2D poly;
+
 
     // Start is called before the first frame update
     void Start()
     {
         mesh = new Mesh();
+        poly = GetComponent<PolygonCollider2D>();
         generateMesh();
     }
 
@@ -108,6 +111,19 @@ public class makeMesh : MonoBehaviour
 
         mesh.vertices = vertices;
         mesh.triangles = triangles;
+
+        Vector2[] uvs = new Vector2[vertices.Length];
+
+        for(int i = 0; i < uvs.Length; i++)
+        {
+            uvs[i] = new Vector2(vertices[i].x, vertices[i].y);
+        }
+
+        mesh.uv = uvs;
+        poly.SetPath(0,uvs);
+
+        mesh.RecalculateBounds();
+        mesh.RecalculateNormals();
 
         print("Area: " + CalculateSurfaceArea());
 

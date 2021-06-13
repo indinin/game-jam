@@ -20,6 +20,7 @@ public class WarningFlash : MonoBehaviour
     void Start()
     {
         countdown = flashInterval;
+        GetComponent<BirdSounds>().playWarningSound();
     }
 
     // Update is called once per frame
