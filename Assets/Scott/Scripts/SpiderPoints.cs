@@ -56,4 +56,11 @@ public class SpiderPoints : MonoBehaviour
             Debug.Log("No Save Data");
         }
     }
+
+    public void deletePoints()
+    {
+        personalBest = 0;
+        points = 0;
+        PlayerPrefs.DeleteAll();
+    }
 }
