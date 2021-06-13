@@ -646,6 +646,11 @@ PrefabInstance:
       propertyPath: bottomBorder
       value: -4.480293
       objectReference: {fileID: 0}
+    - target: {fileID: 8300284342867727659, guid: 3b03b4d0841b51043bfc8d7e7713ab67,
+        type: 3}
+      propertyPath: maxSpawnInterval
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8300284342867727661, guid: 3b03b4d0841b51043bfc8d7e7713ab67,
         type: 3}
       propertyPath: m_Name
@@ -1003,6 +1008,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6697349733774532128, guid: cf40c005dbbc3704eba50a3dedfb9842,
+        type: 3}
+      propertyPath: maxInterval
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6697349733774532129, guid: cf40c005dbbc3704eba50a3dedfb9842,
         type: 3}
       propertyPath: m_RootOrder
@@ -2429,6 +2439,16 @@ PrefabInstance:
         type: 3}
       propertyPath: bottomBorder
       value: -4.480293
+      objectReference: {fileID: 0}
+    - target: {fileID: 8356119260659856957, guid: 03f9a12b3eaf1fa4bbf0d71bf8318372,
+        type: 3}
+      propertyPath: maxSpawnInterval
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8356119260659856957, guid: 03f9a12b3eaf1fa4bbf0d71bf8318372,
+        type: 3}
+      propertyPath: minSpawnInterval
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8356119260659856962, guid: 03f9a12b3eaf1fa4bbf0d71bf8318372,
         type: 3}
