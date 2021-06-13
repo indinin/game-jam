@@ -7,12 +7,17 @@ public class jumpScript : MonoBehaviour
     public bool jumping = false;
     public float jumpSpeed;
     private GameoverToggle gameoverToggle;
+    private SpiderAnimations spiderAnimations;
     // Start is called before the first frame update
     void Start()
     {
         if(this.gameObject.GetComponent<GameoverToggle>())
         {
             gameoverToggle = this.gameObject.GetComponent<GameoverToggle>();
+        }
+        if(this.gameObject.GetComponent<SpiderAnimations>())
+        {
+            spiderAnimations = this.gameObject.GetComponent<SpiderAnimations>();
         }
     }
 
@@ -34,6 +39,7 @@ public class jumpScript : MonoBehaviour
         if (jumping)
         {
             transform.position += transform.up * Time.deltaTime * jumpSpeed;
+            spiderAnimations.JumpAnim();
         }
         
     }

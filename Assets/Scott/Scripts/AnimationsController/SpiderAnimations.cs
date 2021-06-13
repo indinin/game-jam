@@ -7,7 +7,7 @@ public class SpiderAnimations : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
-    public void MovingLeftAnim()
+    public void MovingAnim()
     {
         animator.SetBool("moving", true);
         Debug.Log("Moving - Spider");

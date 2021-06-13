@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class webMeterScript : MonoBehaviour
 {
+    private GameObject spider;
+    private GameoverToggle gameoverToggle;
     public float web, lenience;
     float max;
     bool gameOver = false;
@@ -12,6 +14,11 @@ public class webMeterScript : MonoBehaviour
     {
         max = web;
         GetComponent<webUI>().setMax(web);
+        spider = GameObject.FindGameObjectWithTag("Player");
+        if(spider.GetComponent<GameoverToggle>())
+        {
+            gameoverToggle = spider.GetComponent<GameoverToggle>();
+        }
     }
 
     // Update is called once per frame
@@ -21,6 +28,7 @@ public class webMeterScript : MonoBehaviour
         {
             print("Game Over");
             gameOver = true;
+            gameoverToggle.gameOver();
         }
     }
 

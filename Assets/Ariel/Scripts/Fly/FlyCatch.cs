@@ -5,6 +5,7 @@ using UnityEngine;
 public class FlyCatch : MonoBehaviour
 {
     private GameObject spider;
+    private SpiderAnimations spiderAnimations;
 
     private bool caught;
 
@@ -18,6 +19,10 @@ public class FlyCatch : MonoBehaviour
         randSpeed = GetComponent<FlyMovement>().randSpeed;
         speed     = GetComponent<FlyMovement>().speed;
         spider = GameObject.FindGameObjectWithTag("Player");
+        if(spider.GetComponent<SpiderAnimations>())
+        {
+            spiderAnimations = spider.GetComponent<SpiderAnimations>();
+        }
     }
 
     // Update is called once per frame
@@ -45,6 +50,7 @@ public class FlyCatch : MonoBehaviour
             Debug.Log("Fly: Oof!");
             collision.gameObject.GetComponent<webMeterScript>().changeWebbing(webAmount);
             spider.GetComponent<SpiderPoints>().AddPoints(1);
+            spiderAnimations.EatAnim();
             Destroy(this.gameObject);
         }
     }
