@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Ariel/Scenes/ArielTestScene.unity
+    guid: 7fa6ee0590886dc40b42c868332dd1f5
+  - enabled: 1
     path: Assets/Scenes/TitleScene.unity
     guid: d15f68dc6890fd5499d241f52d31d14b
   m_configObjects: {}

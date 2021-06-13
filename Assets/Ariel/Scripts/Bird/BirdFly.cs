@@ -25,6 +25,7 @@ public class BirdFly : MonoBehaviour
         addProg = (endSizeNum - startSizeNum)/time;
 
         this.GetComponent<Collider2D>().enabled = false;
+        GetComponent<BirdSounds>().playFlapSound();
     }
 
     // Update is called once per frame

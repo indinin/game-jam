@@ -7,6 +7,7 @@ public class FlySpawning : MonoBehaviour
     public GameObject flyObject;
     
     public int maxFlies = 10;
+    [SerializeField]
     private int currentFlies;
 
     public float maxSpawnInterval = 5f;
@@ -22,11 +23,15 @@ public class FlySpawning : MonoBehaviour
     [SerializeField]
     private float countdown;
 
+    private float flyLifetime;
+    public float minFlyLifetime;
+
     // Start is called before the first frame update
     void Start()
     {
         currentInterval = maxSpawnInterval;
         countdown = currentInterval;
+        flyLifetime = flyObject.GetComponent<FlyMovement>().lifeTime;
     }
 
     // Update is called once per frame
@@ -34,10 +39,20 @@ public class FlySpawning : MonoBehaviour
     {
         countdown -= Time.deltaTime;
 
+        currentFlies = GameObject.FindGameObjectsWithTag("Fly").Length;
+
+        if (currentFlies > 0 && !GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<FlySounds>().playBuzzSound();
+        }
+
+        else if (currentFlies == 0 && GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<AudioSource>().Stop();
+        }
+
         if (countdown <= 0)
         {
-            currentFlies = GameObject.FindGameObjectsWithTag("Fly").Length;
-
             if (Random.Range(0,2) == 1 && currentFlies < maxFlies)
             {
                 GameObject fly = Instantiate(flyObject,
@@ -46,23 +61,28 @@ public class FlySpawning : MonoBehaviour
                                                          this.transform.position.z),
                                              new Quaternion(0, 0, 0, 0));
 
-                fly.GetComponent<FlyMovement>().camera = FindObjectOfType<Camera>();
+                fly.GetComponent<FlyMovement>().lifeTime = flyLifetime;
                 currentFlies++;
                 Debug.Log("Fly: Hallelujah!");
             }
 
             if (currentFlies == 1 && currentInterval > minSpawnInterval)
             {
+                flyLifetime -= (intervalLoss + 0.1f);
                 currentInterval -= intervalLoss;
 
                 if (currentInterval < intervalLoss)
                 {
                     currentInterval = intervalLoss;
                 }
+
+                if (flyLifetime < minFlyLifetime)
+                {
+                    flyLifetime = minFlyLifetime;
+                }
             }
 
             countdown = currentInterval;
         }
-
     }
 }

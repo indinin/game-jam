@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class HornetHurt : MonoBehaviour
 {
-    public GameObject spider;
+    private GameObject spider;
+    public float webAmount = -2f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        spider = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -24,6 +25,7 @@ public class HornetHurt : MonoBehaviour
         {
             Debug.Log("Hornet: Get Shrekt!");
             /* Do Something to Spider */
+            collision.otherCollider.gameObject.GetComponent<webMeterScript>().changeWebbing(webAmount);
         }
     }
 }
