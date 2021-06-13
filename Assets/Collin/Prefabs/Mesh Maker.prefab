@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 0}
-  fadeTime: 20
+  fadeTime: 8
 --- !u!60 &-194092309712808922
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -61,6 +61,7 @@ public class GameOverController : MonoBehaviour
 
     public void RestartGame()
     {
+        timerObj.setIsGameOver(false);
         SceneManager.LoadScene(TitleSceneNumber);
         Debug.Log("Game Over Go To Menu");
     }
