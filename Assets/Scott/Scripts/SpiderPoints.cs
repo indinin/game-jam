@@ -10,6 +10,7 @@ public class SpiderPoints : MonoBehaviour
     void Awake()
     {
         points = 0;
+        Time.timeScale = 1;
         loadPoints();
     }
 
