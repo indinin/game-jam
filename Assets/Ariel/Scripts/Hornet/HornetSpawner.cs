@@ -34,10 +34,20 @@ public class HornetSpawner : MonoBehaviour
     {
         countdown -= Time.deltaTime;
 
+        currentHornets = GameObject.FindGameObjectsWithTag("Hornet").Length;
+
+        if (currentHornets > 0 && !GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<HornetSounds>().playBuzzSound();
+        }
+
+        else if (currentHornets == 0 && GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<AudioSource>().Stop();
+        }
+
         if (countdown <= 0)
         {
-            currentHornets = GameObject.FindGameObjectsWithTag("Hornet").Length;
-
             if (currentHornets < maxHornets)
             {
                 GameObject hornet = Instantiate(hornetObject,

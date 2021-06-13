@@ -7,6 +7,7 @@ public class FlySpawning : MonoBehaviour
     public GameObject flyObject;
     
     public int maxFlies = 10;
+    [SerializeField]
     private int currentFlies;
 
     public float maxSpawnInterval = 5f;
@@ -38,10 +39,20 @@ public class FlySpawning : MonoBehaviour
     {
         countdown -= Time.deltaTime;
 
+        currentFlies = GameObject.FindGameObjectsWithTag("Fly").Length;
+
+        if (currentFlies > 0 && !GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<FlySounds>().playBuzzSound();
+        }
+
+        else if (currentFlies == 0 && GetComponent<AudioSource>().isPlaying)
+        {
+            GetComponent<AudioSource>().Stop();
+        }
+
         if (countdown <= 0)
         {
-            currentFlies = GameObject.FindGameObjectsWithTag("Fly").Length;
-
             if (Random.Range(0,2) == 1 && currentFlies < maxFlies)
             {
                 GameObject fly = Instantiate(flyObject,
@@ -73,6 +84,5 @@ public class FlySpawning : MonoBehaviour
 
             countdown = currentInterval;
         }
-
     }
 }
