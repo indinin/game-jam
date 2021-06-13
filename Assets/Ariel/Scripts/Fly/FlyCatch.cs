@@ -68,7 +68,7 @@ public class FlyCatch : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        Debug.Log("Hornet: Oof!");
+        Debug.Log("Fly: Oof!");
         Destroy(this.gameObject);
     }
 }
