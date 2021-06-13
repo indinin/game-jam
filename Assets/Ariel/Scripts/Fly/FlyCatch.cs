@@ -44,6 +44,7 @@ public class FlyCatch : MonoBehaviour
         {
             Debug.Log("Fly: Oof!");
             collision.gameObject.GetComponent<webMeterScript>().changeWebbing(webAmount);
+            spider.GetComponent<SpiderPoints>().AddPoints(1);
             Destroy(this.gameObject);
         }
     }
