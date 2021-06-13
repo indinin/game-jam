@@ -147,10 +147,10 @@ MonoBehaviour:
   maxSpawnInterval: 60
   minSpawnInterval: 30
   intervalLoss: 1
-  leftBorder: -500
-  rightBorder: 500
-  topBorder: 500
-  bottomBorder: -500
+  leftBorder: -1
+  rightBorder: 1
+  topBorder: 1
+  bottomBorder: -1
   countdown: 0
 --- !u!114 &2286531694111553717
 MonoBehaviour:
@@ -165,4 +165,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buzzSfx: {fileID: 8300000, guid: 3d88c6b3d887e124d95a97570ed260a8, type: 3}
+  stingSfx: {fileID: 0}
   audioSource: {fileID: 1769663653347493914}

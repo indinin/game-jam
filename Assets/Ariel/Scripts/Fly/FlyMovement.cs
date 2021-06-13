@@ -119,31 +119,31 @@ public class FlyMovement : MonoBehaviour
             switch (Random.Range(0,8))
             {
                 case 0:
-                    target = new Vector3(this.transform.position.x, 1000, this.transform.position.z);
+                    target = new Vector3(this.transform.position.x, 20, this.transform.position.z);
                     break;
                 case 1:
-                    target = new Vector3(this.transform.position.x, -1000, this.transform.position.z);
+                    target = new Vector3(this.transform.position.x, -20, this.transform.position.z);
                     break;
                 case 2:
-                    target = new Vector3(1000, this.transform.position.y, this.transform.position.z);
+                    target = new Vector3(20, this.transform.position.y, this.transform.position.z);
                     break;
                 case 3:
-                    target = new Vector3(-1000, this.transform.position.y, this.transform.position.z);
+                    target = new Vector3(-20, this.transform.position.y, this.transform.position.z);
                     break;
                 case 4:
-                    target = new Vector3(1000, 1000, this.transform.position.z);
+                    target = new Vector3(20, 20, this.transform.position.z);
                     break;
                 case 5:
-                    target = new Vector3(1000, -1000, this.transform.position.z);
+                    target = new Vector3(20, -20, this.transform.position.z);
                     break;
                 case 6:
-                    target = new Vector3(-1000, -1000, this.transform.position.z);
+                    target = new Vector3(-20, -20, this.transform.position.z);
                     break;
                 case 7:
-                    target = new Vector3(-1000, 1000, this.transform.position.z);
+                    target = new Vector3(-20, 20, this.transform.position.z);
                     break;
                 default:
-                    target = new Vector3(this.transform.position.x, 1000, this.transform.position.z);
+                    target = new Vector3(this.transform.position.x, 20, this.transform.position.z);
                     break;
             }
             progress = 0.01f;

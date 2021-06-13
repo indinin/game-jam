@@ -47,8 +47,8 @@ MonoBehaviour:
     type: 3}
   minInterval: 10
   maxInterval: 180
-  leftBorder: -500
-  rightBorder: 500
-  topBorder: 500
-  bottomBorder: -500
+  leftBorder: -1
+  rightBorder: 1
+  topBorder: 1
+  bottomBorder: -1
   countdown: 0

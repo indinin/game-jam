@@ -34,7 +34,7 @@ public class HornetHurt : MonoBehaviour
             }
 
             /* Do Something to Spider */
-            collision.gameObject.GetComponent<webMeterScript>().changeWebbing(webAmount);
+            collision.gameObject.GetComponent<meshManager>().meter.GetComponent<webMeterScript>().changeWebbing(webAmount);
         }
     }
 

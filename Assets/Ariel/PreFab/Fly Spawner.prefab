@@ -48,13 +48,14 @@ MonoBehaviour:
   flyObject: {fileID: 761371876925326974, guid: 9b693fffae199ed43bf2a8216966826f,
     type: 3}
   maxFlies: 10
+  currentFlies: 0
   maxSpawnInterval: 5
   minSpawnInterval: 1
   intervalLoss: 0.25
-  leftBorder: -500
-  rightBorder: 500
-  topBorder: 50
-  bottomBorder: -500
+  leftBorder: -1
+  rightBorder: 1
+  topBorder: 1
+  bottomBorder: -1
   countdown: 0
   minFlyLifetime: 10
 --- !u!82 &5276832771972093711

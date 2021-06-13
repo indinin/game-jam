@@ -53,7 +53,7 @@ public class FlyCatch : MonoBehaviour
         if (collision.gameObject.Equals(spider) && caught)
         {
             Debug.Log("Fly: Oof!");
-            collision.gameObject.GetComponent<webMeterScript>().changeWebbing(webAmount);
+            collision.gameObject.GetComponent<meshManager>().meter.GetComponent<webMeterScript>().changeWebbing(webAmount);
             spider.GetComponent<SpiderPoints>().AddPoints(1);
             spiderAnimations.EatAnim();
             spiderSounds.playEatSound();
