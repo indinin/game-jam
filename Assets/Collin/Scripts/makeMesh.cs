@@ -13,10 +13,13 @@ public class makeMesh : MonoBehaviour
     int[] triangles;
     PolygonCollider2D poly;
 
+    bool checkVis;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        checkVis = false;
         transform.position = new Vector3(transform.position.x, transform.position.y, dim3);
         mesh = new Mesh();
         poly = GetComponent<PolygonCollider2D>();
@@ -26,14 +29,10 @@ public class makeMesh : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        if (checkVis)
         {
-            updateNodes();
-        }
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            generateMesh();
+            print("Visible: " + GetComponent<MeshRenderer>().isVisible);
+            checkVis = false;
         }
     }
 
@@ -149,6 +148,10 @@ public class makeMesh : MonoBehaviour
         center = null;
 
         meter.GetComponent<webMeterScript>().changeWebbing(-1 * CalculateSurfaceArea());
+
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0.5f);
+
+        checkVis = true;
     }
 
 

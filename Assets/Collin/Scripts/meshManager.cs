@@ -34,7 +34,10 @@ public class meshManager : MonoBehaviour
         GameObject mesh = Instantiate(meshMaker, center.transform.position, center.transform.rotation);
         mesh.GetComponent<makeMesh>().center = center;
         mesh.GetComponent<makeMesh>().meter = meter;
+    }
 
+    public void deleteNodes()
+    {
         GameObject[] nodes = GameObject.FindGameObjectsWithTag("webNode");
         foreach (GameObject node in nodes)
         {

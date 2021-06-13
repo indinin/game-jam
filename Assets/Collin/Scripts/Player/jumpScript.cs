@@ -17,7 +17,7 @@ public class jumpScript : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            if (!jumping)
+            if (!jumping && (!GetComponent<walkScript>().grav))
             {
                 var mouse = Input.mousePosition;
                 var screenPoint = Camera.main.WorldToScreenPoint(transform.localPosition);
