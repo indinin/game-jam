@@ -41,8 +41,14 @@ public class newNodeScript : MonoBehaviour
             {
                 if(Vector3.Distance(transform.position, player.transform.position) < distance)
                 {
-                    print("Make web");
-                    player.GetComponent<meshManager>().makeMesh();
+                    GameObject[] nodes = GameObject.FindGameObjectsWithTag("webNode");
+                    if (nodes.Length > 2)
+                    {
+                        print("Make web");
+                        player.GetComponent<meshManager>().makeMesh();
+                    }
+
+                    player.GetComponent<meshManager>().deleteNodes();
                 }
             }
         }

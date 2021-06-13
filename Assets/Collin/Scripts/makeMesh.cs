@@ -13,10 +13,13 @@ public class makeMesh : MonoBehaviour
     int[] triangles;
     PolygonCollider2D poly;
 
+    bool checkVis;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        checkVis = false;
         transform.position = new Vector3(transform.position.x, transform.position.y, dim3);
         mesh = new Mesh();
         poly = GetComponent<PolygonCollider2D>();
@@ -26,14 +29,10 @@ public class makeMesh : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        if (checkVis)
         {
-            updateNodes();
-        }
-
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            generateMesh();
+            print("Visible: " + GetComponent<MeshRenderer>().isVisible);
+            checkVis = false;
         }
     }
 
@@ -64,7 +63,7 @@ public class makeMesh : MonoBehaviour
         foreach (GameObject node in nodes)
         {
             vertices[i] = node.transform.position;
-            vertices[i].z = dim3;
+            //vertices[i].z = dim3;
             i++;
         }
 
@@ -72,6 +71,23 @@ public class makeMesh : MonoBehaviour
     }
     void sortVertices()
     {
+        /*
+        float centerX = 0;
+        float centerY = 0;
+        for(int i = 0; i < vertices.Length; i++)
+        {
+            centerX += vertices[i].x;
+            centerY += vertices[i].y;
+        }
+
+        centerX = centerX / vertices.Length;
+        centerY = centerY / vertices.Length;
+
+        center.transform.position = new Vector3(centerX, centerY, center.transform.position.z);
+
+
+    */
+
         //Vector3[] sortedVerts = new Vector3[vertices.Length];
         for (int i = 0; i < vertices.Length; i++)
         {
@@ -129,7 +145,13 @@ public class makeMesh : MonoBehaviour
 
         print("Area: " + CalculateSurfaceArea());
 
+        center = null;
+
         meter.GetComponent<webMeterScript>().changeWebbing(-1 * CalculateSurfaceArea());
+
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0.5f);
+
+        checkVis = true;
     }
 
 

@@ -7,17 +7,22 @@ public class arrowScript : MonoBehaviour
 
     public GameObject self, player;
     bool visible = true;
+    private GameoverToggle gameoverToggle;
     // Start is called before the first frame update
     void Start()
     {
         self = this.gameObject;
+        if(player.GetComponent<GameoverToggle>())
+        {
+            gameoverToggle = player.GetComponent<GameoverToggle>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         self.transform.position = player.transform.position;
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !gameoverToggle.getIsGameOver())
         {
             if (!visible)
             {

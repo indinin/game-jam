@@ -12,6 +12,10 @@ public class walkScript : MonoBehaviour
     public jumpScript jump;
     float posTimer = 0;
     float delTime;
+    private SpiderAnimations spiderAnimations;
+    [SerializeField]
+    private SpiderSounds spiderSounds;
+    private AudioSource audioSource;
      
     // Start is called before the first frame update
     void Start()
@@ -21,6 +25,18 @@ public class walkScript : MonoBehaviour
         onWall = true;
         grav = false;
         bgCollider = bg.GetComponent<BoxCollider2D>();
+        if(this.gameObject.GetComponent<SpiderAnimations>())
+        {
+            spiderAnimations = this.gameObject.GetComponent<SpiderAnimations>();
+        }
+        if(this.gameObject.GetComponent<SpiderSounds>())
+        {
+            spiderSounds = this.gameObject.GetComponent<SpiderSounds>();
+        }
+        if(this.gameObject.GetComponent<AudioSource>())
+        {
+            audioSource = this.gameObject.GetComponent<AudioSource>();
+        }
     }
 
     // Update is called once per frame
@@ -34,18 +50,38 @@ public class walkScript : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             verticalMovement += 1;
+            spiderAnimations.MovingAnim();
+            if(!audioSource.isPlaying)
+            {
+                spiderSounds.playWalkSound();
+            }
         }
         if (Input.GetKey(KeyCode.S))
         {
             verticalMovement -= 1;
+            spiderAnimations.MovingAnim();
+            if(!audioSource.isPlaying)
+            {
+                spiderSounds.playWalkSound();
+            }
         }
         if (Input.GetKey(KeyCode.A))
         {
             horizontalMovement -= 1;
+            spiderAnimations.MovingAnim();
+            if(!audioSource.isPlaying)
+            {
+                spiderSounds.playWalkSound();
+            }
         }
         if (Input.GetKey(KeyCode.D))
         {
             horizontalMovement += 1;
+            spiderAnimations.MovingAnim();
+            if(!audioSource.isPlaying)
+            {
+                spiderSounds.playWalkSound();
+            }
         }
         if (grav)
         {
@@ -55,6 +91,14 @@ public class walkScript : MonoBehaviour
         {
             verticalMovement = 0;
             horizontalMovement = 0;
+        }
+        if(verticalMovement == 0 && horizontalMovement == 0)
+        {
+            spiderAnimations.StopMovingAnim();
+            if(audioSource.isPlaying)
+            {
+                spiderSounds.stopWalkSound();
+            }
         }
         movement = Vector3.Normalize(new Vector3(horizontalMovement, verticalMovement, 0));
         this.gameObject.transform.position += movement*moveSpeed*delTime;
@@ -117,10 +161,9 @@ public class walkScript : MonoBehaviour
         if (collision.gameObject.tag == "Web")
         {
             print("Enter web");
-            if (jump.jumping)
+            if (jump.jumping && Input.anyKey)
             {
-                jump.jumping = false;
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+
             }
             onWeb = true;
         }
@@ -169,7 +212,6 @@ public class walkScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Wall")
         {
-
             if (jump.jumping || onWeb)
             {
                 collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
@@ -177,5 +219,20 @@ public class walkScript : MonoBehaviour
         }
     }
 
- 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Web")
+        {
+            if (!onWeb)
+            {
+                onWeb = true;
+            }
+            if(jump.jumping && Input.anyKey)
+            {
+                jump.jumping = false;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+        }
+    }
+
 }

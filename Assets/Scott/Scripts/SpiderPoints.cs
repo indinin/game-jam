@@ -10,6 +10,7 @@ public class SpiderPoints : MonoBehaviour
     void Awake()
     {
         points = 0;
+        Time.timeScale = 1;
         loadPoints();
     }
 
@@ -55,5 +56,12 @@ public class SpiderPoints : MonoBehaviour
             personalBest = 0;
             Debug.Log("No Save Data");
         }
+    }
+
+    public void deletePoints()
+    {
+        personalBest = 0;
+        points = 0;
+        PlayerPrefs.DeleteAll();
     }
 }

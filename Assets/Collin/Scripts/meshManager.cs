@@ -18,7 +18,10 @@ public class meshManager : MonoBehaviour
         if(player.GetComponent<jumpScript>().jumping && !jumped)
         {
             jumped = true;
-            Instantiate(obj, player.transform.position, new Quaternion(0,0,0,0));
+            if (!player.GetComponent<walkScript>().onWeb)
+            {
+                Instantiate(obj, player.transform.position, new Quaternion(0, 0, 0, 0));
+            }
         }
         if(jumped && !player.GetComponent<jumpScript>().jumping)
         {
@@ -31,7 +34,10 @@ public class meshManager : MonoBehaviour
         GameObject mesh = Instantiate(meshMaker, center.transform.position, center.transform.rotation);
         mesh.GetComponent<makeMesh>().center = center;
         mesh.GetComponent<makeMesh>().meter = meter;
+    }
 
+    public void deleteNodes()
+    {
         GameObject[] nodes = GameObject.FindGameObjectsWithTag("webNode");
         foreach (GameObject node in nodes)
         {

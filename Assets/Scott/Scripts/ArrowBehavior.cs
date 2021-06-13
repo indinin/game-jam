@@ -9,11 +9,19 @@ public class ArrowBehavior : MonoBehaviour
     [SerializeField]
     private SpiderJump spiderJump;
     private GameObject spider;
+    private GameoverToggle gameoverToggle;
 
     void Awake()
     {
         spider = GameObject.FindWithTag("Player");
-        spiderJump = spider.GetComponent<SpiderJump>();
+        if(spider.GetComponent<SpiderJump>())
+        {
+            spiderJump = spider.GetComponent<SpiderJump>();
+        }
+        if(spider.GetComponent<GameoverToggle>())
+        {
+            gameoverToggle = spider.GetComponent<GameoverToggle>();
+        }
     }
 
     void Update()
@@ -25,6 +33,14 @@ public class ArrowBehavior : MonoBehaviour
             Debug.Log("Arrow Destroyed");
         }
 
+        if(!gameoverToggle.getIsGameOver())
+        {
+            makeArrow();
+        }
+    }
+
+    public void makeArrow()
+    {
         mousePos = Input.mousePosition;
         mousePos.z = 5.23f; //The distance between the camera and object
         objPos = Camera.main.WorldToScreenPoint(this.transform.position);

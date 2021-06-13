@@ -22,7 +22,7 @@ public class BirdFly : MonoBehaviour
         currentSize = this.transform.localScale;
         endSize = new Vector3(endSizeNum, endSizeNum, endSizeNum);
         
-        addProg = (endSizeNum - startSizeNum)/time;
+        addProg = (endSizeNum - startSizeNum)*100/time;
 
         this.GetComponent<Collider2D>().enabled = false;
         GetComponent<BirdSounds>().playFlapSound();
@@ -64,6 +64,12 @@ public class BirdFly : MonoBehaviour
         {
             Debug.Log("Bird: Killed stuff!");
             Destroy(collision.gameObject);
+        }
+
+        else if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<meshManager>().meter.GetComponent<webMeterScript>().changeWebbing(-2000);
+            Debug.Log("Bird: Got 'em!");
         }
     }
 }

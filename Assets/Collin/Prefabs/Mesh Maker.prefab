@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cc80ec8fc2ebd2842aade6e248fae49f, type: 2}
+  - {fileID: 2100000, guid: 8de9c4075968c9548899a025fb6f1142, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 0}
-  fadeTime: 10
+  fadeTime: 8
 --- !u!60 &-194092309712808922
 PolygonCollider2D:
   m_ObjectHideFlags: 0

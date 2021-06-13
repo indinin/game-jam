@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameOverController : MonoBehaviour
 {
@@ -12,12 +13,39 @@ public class GameOverController : MonoBehaviour
     [SerializeField]
     private AudioSource audioSource;
 
+    [SerializeField]
+    private TextMeshProUGUI timeText, pointsText, bestText;
+    private int timer, points, best;
+    private GameObject spider;
+    private SpiderPoints spiderPoints;
+    [SerializeField]
+    private Timer timerObj;
+
     void Awake()
     {
         if(this.gameObject.GetComponent<AudioSource>())
         {
             audioSource = this.gameObject.GetComponent<AudioSource>();
         }
+        spider = GameObject.FindGameObjectWithTag("Player");
+        if(spider.GetComponent<SpiderPoints>())
+        {
+            spiderPoints = spider.GetComponent<SpiderPoints>();
+        }
+        timerObj.setIsGameOver(true);
+
+        spiderPoints.setPersonalBest();
+        spiderPoints.savePoints();
+    }
+
+    void Update()
+    {
+        points = spiderPoints.getPoints();
+        timer = timerObj.getTime();
+        best = spiderPoints.getPersonalBest();
+        timeText.text = "Time: " + timer;
+        pointsText.text = "Points: " + points;
+        bestText.text = "Personal Best: " + best;
     }
 
     void OnEnable()
@@ -33,6 +61,7 @@ public class GameOverController : MonoBehaviour
 
     public void RestartGame()
     {
+        timerObj.setIsGameOver(false);
         SceneManager.LoadScene(TitleSceneNumber);
         Debug.Log("Game Over Go To Menu");
     }
