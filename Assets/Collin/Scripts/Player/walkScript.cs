@@ -117,10 +117,9 @@ public class walkScript : MonoBehaviour
         if (collision.gameObject.tag == "Web")
         {
             print("Enter web");
-            if (jump.jumping)
+            if (jump.jumping && Input.anyKey)
             {
-                jump.jumping = false;
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+
             }
             onWeb = true;
         }
@@ -169,7 +168,6 @@ public class walkScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "Wall")
         {
-
             if (jump.jumping || onWeb)
             {
                 collision.gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
@@ -177,5 +175,20 @@ public class walkScript : MonoBehaviour
         }
     }
 
- 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Web")
+        {
+            if (!onWeb)
+            {
+                onWeb = true;
+            }
+            if(jump.jumping && Input.anyKey)
+            {
+                jump.jumping = false;
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+        }
+    }
+
 }

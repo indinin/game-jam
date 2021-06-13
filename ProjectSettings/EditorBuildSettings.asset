@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Collin/Scenes/Player Test Scene.unity
+    guid: 2d6b48acdb496074baab748677b5f1fa
+  - enabled: 1
     path: Assets/Ariel/Scenes/ArielTestScene.unity
     guid: 7fa6ee0590886dc40b42c868332dd1f5
   - enabled: 1

@@ -18,7 +18,10 @@ public class meshManager : MonoBehaviour
         if(player.GetComponent<jumpScript>().jumping && !jumped)
         {
             jumped = true;
-            Instantiate(obj, player.transform.position, new Quaternion(0,0,0,0));
+            if (!player.GetComponent<walkScript>().onWeb)
+            {
+                Instantiate(obj, player.transform.position, new Quaternion(0, 0, 0, 0));
+            }
         }
         if(jumped && !player.GetComponent<jumpScript>().jumping)
         {
