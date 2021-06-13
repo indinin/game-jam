@@ -8,6 +8,7 @@ public class jumpScript : MonoBehaviour
     public float jumpSpeed;
     private GameoverToggle gameoverToggle;
     private SpiderAnimations spiderAnimations;
+    private SpiderSounds spiderSounds;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,10 @@ public class jumpScript : MonoBehaviour
         if(this.gameObject.GetComponent<SpiderAnimations>())
         {
             spiderAnimations = this.gameObject.GetComponent<SpiderAnimations>();
+        }
+        if(this.gameObject.GetComponent<SpiderSounds>())
+        {
+            spiderSounds = this.gameObject.GetComponent<SpiderSounds>();
         }
     }
 
@@ -34,12 +39,13 @@ public class jumpScript : MonoBehaviour
                 var angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
                 transform.rotation = Quaternion.Euler(0, 0, angle - 90);
                 jumping = true;
+                spiderAnimations.JumpAnim();
+                spiderSounds.playJumpSound();
             }
         }
         if (jumping)
         {
             transform.position += transform.up * Time.deltaTime * jumpSpeed;
-            spiderAnimations.JumpAnim();
         }
         
     }

@@ -13,6 +13,9 @@ public class walkScript : MonoBehaviour
     float posTimer = 0;
     float delTime;
     private SpiderAnimations spiderAnimations;
+    [SerializeField]
+    private SpiderSounds spiderSounds;
+    private AudioSource audioSource;
      
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,14 @@ public class walkScript : MonoBehaviour
         if(this.gameObject.GetComponent<SpiderAnimations>())
         {
             spiderAnimations = this.gameObject.GetComponent<SpiderAnimations>();
+        }
+        if(this.gameObject.GetComponent<SpiderSounds>())
+        {
+            spiderSounds = this.gameObject.GetComponent<SpiderSounds>();
+        }
+        if(this.gameObject.GetComponent<AudioSource>())
+        {
+            audioSource = this.gameObject.GetComponent<AudioSource>();
         }
     }
 
@@ -40,21 +51,37 @@ public class walkScript : MonoBehaviour
         {
             verticalMovement += 1;
             spiderAnimations.MovingAnim();
+            if(!audioSource.isPlaying)
+            {
+                spiderSounds.playWalkSound();
+            }
         }
         if (Input.GetKey(KeyCode.S))
         {
             verticalMovement -= 1;
             spiderAnimations.MovingAnim();
+            if(!audioSource.isPlaying)
+            {
+                spiderSounds.playWalkSound();
+            }
         }
         if (Input.GetKey(KeyCode.A))
         {
             horizontalMovement -= 1;
             spiderAnimations.MovingAnim();
+            if(!audioSource.isPlaying)
+            {
+                spiderSounds.playWalkSound();
+            }
         }
         if (Input.GetKey(KeyCode.D))
         {
             horizontalMovement += 1;
             spiderAnimations.MovingAnim();
+            if(!audioSource.isPlaying)
+            {
+                spiderSounds.playWalkSound();
+            }
         }
         if (grav)
         {
@@ -68,6 +95,10 @@ public class walkScript : MonoBehaviour
         if(verticalMovement == 0 && horizontalMovement == 0)
         {
             spiderAnimations.StopMovingAnim();
+            if(audioSource.isPlaying)
+            {
+                spiderSounds.stopWalkSound();
+            }
         }
         movement = Vector3.Normalize(new Vector3(horizontalMovement, verticalMovement, 0));
         this.gameObject.transform.position += movement*moveSpeed*delTime;

@@ -7,6 +7,7 @@ public class GameoverToggle : MonoBehaviour
     [SerializeField]
     private GameObject gameOverCanvas;
     private SpiderAnimations spiderAnimations;
+    private SpiderSounds spiderSounds;
     private bool isGameOver;
 
     void Awake()
@@ -15,6 +16,10 @@ public class GameoverToggle : MonoBehaviour
         if(this.gameObject.GetComponent<SpiderAnimations>())
         {
             spiderAnimations = this.gameObject.GetComponent<SpiderAnimations>();
+        }
+        if(this.gameObject.GetComponent<SpiderSounds>())
+        {
+            spiderSounds = this.gameObject.GetComponent<SpiderSounds>();
         }
     }
 
@@ -29,6 +34,7 @@ public class GameoverToggle : MonoBehaviour
     public void gameOver()
     {
         spiderAnimations.DeathAnim();
+        spiderSounds.playFallSound();
         Invoke("goToGameOverScreen", 1f);
     }
 

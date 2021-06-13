@@ -6,6 +6,7 @@ public class FlyCatch : MonoBehaviour
 {
     private GameObject spider;
     private SpiderAnimations spiderAnimations;
+    private SpiderSounds spiderSounds;
 
     private bool caught;
 
@@ -22,6 +23,10 @@ public class FlyCatch : MonoBehaviour
         if(spider.GetComponent<SpiderAnimations>())
         {
             spiderAnimations = spider.GetComponent<SpiderAnimations>();
+        }
+        if(spider.GetComponent<SpiderSounds>())
+        {
+            spiderSounds = spider.GetComponent<SpiderSounds>();
         }
     }
 
@@ -51,6 +56,7 @@ public class FlyCatch : MonoBehaviour
             collision.gameObject.GetComponent<webMeterScript>().changeWebbing(webAmount);
             spider.GetComponent<SpiderPoints>().AddPoints(1);
             spiderAnimations.EatAnim();
+            spiderSounds.playEatSound();
             Destroy(this.gameObject);
         }
     }
