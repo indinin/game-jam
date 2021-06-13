@@ -3550,20 +3550,20 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ariel Guiterezz
+  m_text: 'Ariel (S4CK)
 
 
-    Collin Spence
+    Collin (IndigoNinja)
 
 
-    John Satkowski
+    John (My_RAMEN)
 
 
-    Long Jia
-    Lin
+    Long
+    Jia (Kuu_1)
 
 
-    Scott Ogar'
+    Scott (Scooters)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c849c14045732e14c94451499231df62, type: 2}
   m_sharedMaterial: {fileID: -3036471997700655888, guid: c849c14045732e14c94451499231df62,
