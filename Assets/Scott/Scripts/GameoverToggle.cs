@@ -58,4 +58,9 @@ public class GameoverToggle : MonoBehaviour
     {
         return isGameOver;
     }
+
+    public void setIsGameOver(bool isGameOver)
+    {
+        this.isGameOver = isGameOver;
+    }
 }
