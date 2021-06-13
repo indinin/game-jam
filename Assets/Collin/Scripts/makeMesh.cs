@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class makeMesh : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class makeMesh : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = new Vector3(transform.position.x, transform.position.y, dim3);
         mesh = new Mesh();
         poly = GetComponent<PolygonCollider2D>();
         generateMesh();
