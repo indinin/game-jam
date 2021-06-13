@@ -9,22 +9,13 @@ public class SpiderAnimations : MonoBehaviour
 
     public void MovingLeftAnim()
     {
-        animator.SetBool("movingLeft", true);
-        animator.SetBool("movingRight", false);
-        Debug.Log("Moving Left - Spider");
-    }
-
-    public void MovingRightAnim()
-    {
-        animator.SetBool("movingLeft", false);
-        animator.SetBool("movingRight", true);
-        Debug.Log("Moving Right - Spider");
+        animator.SetBool("moving", true);
+        Debug.Log("Moving - Spider");
     }
 
     public void StopMovingAnim()
     {
-        animator.SetBool("movingLeft", false);
-        animator.SetBool("movingRight", false);
+        animator.SetBool("moving", false);
         Debug.Log("Stopped - Spider");
     }
 
@@ -32,6 +23,12 @@ public class SpiderAnimations : MonoBehaviour
     {
         animator.SetTrigger("jump");
         Debug.Log("Jumping - Spider");
+    }
+
+    public void EatAnim()
+    {
+        animator.SetTrigger("eat");
+        Debug.Log("Eating - Spider");
     }
 
     public void DeathAnim()
